@@ -37,4 +37,35 @@ allowed_domains 规定你爬取的范围，默认全部，我发现不设置也�
 
 start_urls 这是爬虫的开始，第一个网络请求就是从这里开始的，具体大家看看源代码吧
 
+这里我们爬取的是豆瓣（url=https://movie.douban.com/celebrity/1016930/photos/?type=C&start=0&sortby=like&size=a&subtype=a）
+
+scrapy使用的是parse来实现爬取逻辑
+
+item = SatomiPicItem()就是导入容器，用xpath从网页解析出来想好的东西，要放到这个容器里返回，交给后面的来处理
+
+xpath用法自行Google 
+
+一般来说，爬取不会爬取一页，我们要想实现爬取多页，就要爬取出来下一页的url，然后使用Requests（next_url）来爬取下一页，其实这里有个超级简单的方法，使用spiders下的Crawlspider类，可以实现网页的多页爬取，我这里不知道为什么老是网页重定向，还没弄清楚怎么回事儿
+![](https://github.com/Tallyouth/work-image/blob/master/QQ%E6%88%AA%E5%9B%BE20171218183652.png)
+### setting.py
+
+这里面就是放置配置文件的，比如代理啊 设置下载延迟啊 什么的，我试过了，豆瓣是要使用代理的，设置user-agent，要不爬不下来，对了，保存文件的配置也在这里面
+![](https://github.com/Tallyouth/work-image/blob/master/QQ%E6%88%AA%E5%9B%BE20171218200455.png)
+
+### pipelines.py
+
+![](https://github.com/Tallyouth/work-image/blob/master/QQ%E6%88%AA%E5%9B%BE20171218201113.png)
+
+在scrapy里有一个专门下载图片的类，是ImagesPipeline，它可以通过get_media_requests函数来自动爬取图片
+
+# 结束
+到这里基本就结束了，运行begin.py文件，就开始爬取了，这里展示几张
+![](https://github.com/Tallyouth/work-image/blob/master/3e21996a368818f75c6098ab230d655b4aaa3fa7.jpg)
+![](https://github.com/Tallyouth/work-image/blob/master/3e35580bf260dee063676e721e6ea2aa28d0a1c7.jpg)
+![](https://github.com/Tallyouth/work-image/blob/master/3e59ee7bfc10d9651ddbad600750946d39742699.jpg)
+![](https://github.com/Tallyouth/work-image/blob/master/3ea1543a85ced3e270b83525f4dcc8665a0e2cc7.jpg)
+
+
+
+
 
