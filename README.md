@@ -10,3 +10,9 @@ python版本： python2.7.13
 
 包只需要进入cmd，pip install scrapy就可以，不用安装其他第三方包
 
+## pycharm
+pycharm编辑器需要配置scrapy的运行环境，在根目录下创建一个begin.py文件，如下
+
+### begin.py
+fafa 
+
