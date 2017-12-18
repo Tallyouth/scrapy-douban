@@ -14,5 +14,3 @@ python版本： python2.7.13
 pycharm编辑器需要配置scrapy的运行环境，在根目录下创建一个begin.py文件，如下
 
 ### begin.py
-fafa 
-
